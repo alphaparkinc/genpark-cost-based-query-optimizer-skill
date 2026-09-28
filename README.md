@@ -1,2 +1,59 @@
 # genpark-cost-based-query-optimizer-skill
-Cost-based relational query optimizer (CBO) evaluating nested loop, hash join, and sort-merge joins.
+
+> Cost-based relational query optimizer (CBO) evaluating nested loop, hash join, and sort-merge joins.
+
+Part of the **GenPark AI Agent Skills Matrix**. Production-ready, zero external dependencies, native Python 3.9+ standard library.
+
+## Architecture
+
+```mermaid
+flowchart TD
+    A[Database Transaction / Query] --> B[Storage Engine / B+ Tree / LSM]
+    B --> C[WAL Logging & MVCC Isolation]
+    C --> D[Cost-Optimized Plan / Execution]
+    D --> E[MCP Protocol Endpoint]
+```
+
+## Features
+- **Zero Third-Party Dependencies**: Pure Python standard library (`bisect`, `collections`).
+- **Database Engine Internals**: B+ Tree indexing, ARIES WAL recovery, LSM tree compaction, and MVCC snapshot isolation.
+- **Native MCP Protocol Support**: Integrated JSON-RPC 2.0 stdio server ready for Claude Desktop, Cursor, and Windsurf.
+
+## Installation
+
+```bash
+pip install genpark-cost-based-query-optimizer-skill
+```
+
+Or clone directly:
+
+```bash
+git clone https://github.com/alphaparkinc/genpark-cost-based-query-optimizer-skill.git
+cd genpark-cost-based-query-optimizer-skill
+python example_usage.py
+```
+
+## Quick Start
+
+```python
+from client import *
+# Refer to example_usage.py for end-to-end execution
+```
+
+## Model Context Protocol (MCP) Setup
+
+Add to your `claude_desktop_config.json` or `cursor.json`:
+
+```json
+{
+  "mcpServers": {
+    "genpark-cost-based-query-optimizer-skill": {
+      "command": "python",
+      "args": ["-m", "genpark-cost-based-query-optimizer-skill.mcp_server"]
+    }
+  }
+}
+```
+
+## License
+MIT License. Copyright (c) 2026 AlphaPark Inc. & Alpha-Park.

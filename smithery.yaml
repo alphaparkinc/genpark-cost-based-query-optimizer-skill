@@ -1,0 +1,6 @@
+# Smithery configuration for genpark-cost-based-query-optimizer-skill
+name: genpark-cost-based-query-optimizer-skill
+version: 1.0.0
+runtime: python
+entrypoint: mcp_server.py
+type: stdio
